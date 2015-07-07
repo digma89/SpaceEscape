@@ -3,20 +3,28 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="objects/plane.ts" />
+/// <reference path="objects/asteroid.ts" />
+/// <reference path="objects/energy.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
 var stats;
 var assets;
 //game variables
+var background;
 var plane;
+var energy;
+var asteroid;
 function preload() {
     assets = new createjs.LoadQueue();
     assets.installPlugin(createjs.Sound);
     assets.on("complete", init, this);
     assets.loadManifest([
+        { id: "background", src: "assets/images/background.jpg" },
         { id: "plane", src: "assets/images/plane.png" },
-        { id: "clicked", src: "assets/sounds/clicked.wav" }
+        { id: "energy", src: "assets/images/energy.png" },
+        { id: "asteroid", src: "assets/images/asteroid1.png" },
     ]);
     setupStats();
 }
@@ -39,20 +47,30 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
+    plane.update(); //look for the plane to change position
+    energy.update(); //update the position of the energy
+    //asteroid.update();
     stage.update(); //update/refresh state
     stats.end();
 }
-function blueButtonClickEvent(event) {
+/*function blueButtonClickEvent(event: createjs.MouseEvent) {
     createjs.Sound.play("clicked");
 }
+*/
 //our main game function
 function main() {
     console.log("Game is Running");
-    plane = new createjs.Bitmap(assets.getResult("plane"));
-    plane.regX = plane.getBounds().width * 0.5;
-    plane.regY = plane.getBounds().height * 0.5;
-    plane.x = 60;
-    plane.y = 270;
+    //add background
+    background = new createjs.Bitmap("assets/images/background.jpg");
+    stage.addChild(background);
+    //add energy objects to stage
+    energy = new objects.Energy(assets.getResult("energy"));
+    stage.addChild(energy);
+    //add plane object to the stage
+    plane = new objects.Plane(assets.getResult("plane"));
     stage.addChild(plane);
+    //add asteroid object to the stage
+    //asteroid = new objects.Asteroid(assets.getResult("asteroid"));
+    //stage.addChild(asteroid);
 }
 //# sourceMappingURL=game.js.map

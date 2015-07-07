@@ -64,6 +64,7 @@
     <Content Include="assets\images\asteroid3.png" />
     <Content Include="assets\images\asteroid4.png" />
     <Content Include="assets\images\background.jpg" />
+    <Content Include="assets\images\energy.png" />
     <Content Include="assets\images\blueButton.png" />
     <Content Include="assets\images\plane.png" />
     <Content Include="assets\sounds\clicked.wav" />
@@ -93,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\game.ts" />
+    <TypeScriptCompile Include="scripts\objects\asteroid.ts" />
+    <TypeScriptCompile Include="scripts\objects\energy.ts" />
+    <TypeScriptCompile Include="scripts\objects\plane.ts" />
     <TypeScriptCompile Include="scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="scripts\typings\preloadjs\preloadjs.d.ts" />
