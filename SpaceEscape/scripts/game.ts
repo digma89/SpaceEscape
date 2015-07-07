@@ -4,9 +4,11 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/space.ts" />
 /// <reference path="objects/plane.ts" />
 /// <reference path="objects/energy.ts" />
 /// <reference path="objects/asteroid.ts" />
+
 
 
 //game framework variables 
@@ -17,11 +19,12 @@ var assets: createjs.LoadQueue;
 
 
 //game variables
-var background: createjs.Bitmap;
+var space: objects.Space;
+//var space: createjs.Bitmap;
 var plane: objects.Plane;
 var energy: objects.Energy;
 var asteroids: objects.Asteroid[] = [];
-//var asteroid: objects.Asteroid;
+
 
 
 
@@ -30,10 +33,10 @@ function preload() {
     assets.installPlugin(createjs.Sound);
     assets.on("complete", init, this);
     assets.loadManifest([
-        { id: "background", src: "assets/images/background.jpg" },
+        { id: "space", src: "assets/images/background.jpg" },
         { id: "plane", src: "assets/images/plane.png" },
         { id: "energy", src: "assets/images/energy.png" },
-        { id: "asteroid", src: "assets/images/asteroid3.png" },
+        { id: "asteroid", src: "assets/images/asteroid2.png" },
         
         
     ]);
@@ -68,6 +71,7 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
+    space.update();
     plane.update(); //look for the plane to change position
     //asteroid.update();
     for (var asteroid = 0; asteroid < 3; asteroid++) {
@@ -91,8 +95,8 @@ function main() {
     console.log("Game is Running");
 
     //add background
-    background = new createjs.Bitmap("assets/images/background.jpg");
-    stage.addChild(background);
+    space = new objects.Space(assets.getResult("space"));
+    stage.addChild(space);
 
     //add energy objects to stage
     energy = new objects.Energy(assets.getResult("energy"));
@@ -107,8 +111,7 @@ function main() {
         asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
         stage.addChild(asteroids[asteroid]);
     }
-    //asteroid = new objects.Asteroid(assets.getResult("asteroid"));
-    //stage.addChild(asteroid);
+
 
     }
 

@@ -33,8 +33,6 @@ var objects;
         };
         //public methods************************************
         Energy.prototype.update = function () {
-            console.log(this.x);
-            console.log(this.y);
             this.x -= this.dx; //moves the energy
             this.checkBounds();
         };
