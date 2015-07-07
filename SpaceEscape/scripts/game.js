@@ -4,8 +4,8 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="objects/plane.ts" />
-/// <reference path="objects/asteroid.ts" />
 /// <reference path="objects/energy.ts" />
+/// <reference path="objects/asteroid.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
@@ -15,7 +15,8 @@ var assets;
 var background;
 var plane;
 var energy;
-var asteroid;
+var asteroids = [];
+//var asteroid: objects.Asteroid;
 function preload() {
     assets = new createjs.LoadQueue();
     assets.installPlugin(createjs.Sound);
@@ -24,7 +25,7 @@ function preload() {
         { id: "background", src: "assets/images/background.jpg" },
         { id: "plane", src: "assets/images/plane.png" },
         { id: "energy", src: "assets/images/energy.png" },
-        { id: "asteroid", src: "assets/images/asteroid1.png" },
+        { id: "asteroid", src: "assets/images/asteroid3.png" },
     ]);
     setupStats();
 }
@@ -48,8 +49,11 @@ function setupStats() {
 function gameLoop() {
     stats.begin();
     plane.update(); //look for the plane to change position
-    energy.update(); //update the position of the energy
     //asteroid.update();
+    for (var asteroid = 0; asteroid < 3; asteroid++) {
+        asteroids[asteroid].update();
+    }
+    energy.update(); //update the position of the energy
     stage.update(); //update/refresh state
     stats.end();
 }
@@ -70,6 +74,10 @@ function main() {
     plane = new objects.Plane(assets.getResult("plane"));
     stage.addChild(plane);
     //add asteroid object to the stage
+    for (var asteroid = 0; asteroid < 3; asteroid++) {
+        asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
+        stage.addChild(asteroids[asteroid]);
+    }
     //asteroid = new objects.Asteroid(assets.getResult("asteroid"));
     //stage.addChild(asteroid);
 }

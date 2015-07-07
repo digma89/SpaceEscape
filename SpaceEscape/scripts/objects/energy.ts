@@ -29,7 +29,7 @@
 
         private reset(): void {
             this.y = Math.floor((Math.random() * 380)+this.height); //start island at random location
-            this.x = 2000; //start enegy off stage
+            this.x = 1800; //start enegy off stage
             
         }
 
