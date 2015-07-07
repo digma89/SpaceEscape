@@ -19,7 +19,7 @@ var objects;
         //private method
         Space.prototype.checkBounds = function () {
             //check if space has left the screen then reset
-            if (this.x <= -710) {
+            if (this.x <= -1280) {
                 this.reset();
             }
         };
@@ -29,7 +29,6 @@ var objects;
         };
         //public methods************************************
         Space.prototype.update = function () {
-            console.log(this.x);
             this.x -= this.dx; //moves the space
             this.checkBounds();
         };

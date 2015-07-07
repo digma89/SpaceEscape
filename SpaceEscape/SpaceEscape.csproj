@@ -67,7 +67,8 @@
     <Content Include="assets\images\energy.png" />
     <Content Include="assets\images\blueButton.png" />
     <Content Include="assets\images\plane.png" />
-    <Content Include="assets\sounds\clicked.wav" />
+    <Content Include="assets\sounds\energySound.wav" />
+    <Content Include="assets\sounds\explotion.wav" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

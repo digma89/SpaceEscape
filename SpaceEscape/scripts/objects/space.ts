@@ -19,7 +19,7 @@
         //private method
         private checkBounds(): void {
             //check if space has left the screen then reset
-            if (this.x <= -710) {
+            if (this.x <= -1280) {
                 this.reset();
             }
 
@@ -34,7 +34,6 @@
 
         //public methods************************************
         public update(): void {
-            console.log(this.x);
             this.x -= this.dx; //moves the space
             this.checkBounds();
         }

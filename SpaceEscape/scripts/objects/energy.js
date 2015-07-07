@@ -13,6 +13,7 @@ var objects;
         function Energy(imageString) {
             _super.call(this, imageString);
             this.dx = 5;
+            this.isColliding = false;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;

@@ -6,7 +6,8 @@
         height: number;
         dx: number = 5;
         dy: number = Math.floor(Math.random() * 4) - 2;
-        //Constructor**************************
+        isColliding: boolean = false;
+         //Constructor**************************
         constructor(imageString: string) {
             super(imageString);
             this.width = this.getBounds().width;

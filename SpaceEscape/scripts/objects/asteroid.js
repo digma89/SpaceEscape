@@ -14,6 +14,7 @@ var objects;
             _super.call(this, imageString);
             this.dx = 5;
             this.dy = Math.floor(Math.random() * 4) - 2;
+            this.isColliding = false;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;

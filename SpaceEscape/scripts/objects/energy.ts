@@ -5,6 +5,7 @@
         width: number;
         height: number;
         dx: number = 5;
+        isColliding: boolean = false;
         //Constructor**************************
         constructor(imageString: string) {
             super(imageString);
