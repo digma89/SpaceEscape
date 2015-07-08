@@ -3,11 +3,13 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="utility/utility.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/plane.ts" />
 /// <reference path="objects/energy.ts" />
 /// <reference path="objects/asteroid.ts" />
+/// <reference path="managers/collision.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
@@ -19,6 +21,8 @@ var space;
 var plane;
 var energy;
 var asteroids = [];
+//game managers
+var collision;
 function preload() {
     assets = new createjs.LoadQueue();
     assets.installPlugin(createjs.Sound);
@@ -57,27 +61,13 @@ function gameLoop() {
     //asteroid.update();
     for (var asteroid = 0; asteroid < 3; asteroid++) {
         asteroids[asteroid].update();
-        checkCollision(asteroids[asteroid]);
+        collision.check(asteroids[asteroid]);
     }
-    checkCollision(energy);
+    //checkCollision(energy);
+    collision.check(energy);
     energy.update(); //update the position of the energy
     stage.update(); //update/refresh state
     stats.end();
-}
-//distance utillity function 
-function distance(p1, p2) {
-    return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
-}
-function checkCollision(gameObject) {
-    var p1 = new createjs.Point();
-    var p2 = new createjs.Point();
-    p1.x = plane.x;
-    p1.y = plane.y;
-    p2.x = gameObject.x;
-    p2.y = gameObject.y;
-    if (distance(p1, p2) < ((plane.height * 0.5) + (gameObject.height * 0.3))) {
-        createjs.Sound.play(gameObject.sound);
-    }
 }
 //our main game function
 function main() {
@@ -96,5 +86,7 @@ function main() {
         asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
         stage.addChild(asteroids[asteroid]);
     }
+    //add collision manager
+    collision = new managers.Collision();
 }
 //# sourceMappingURL=game.js.map

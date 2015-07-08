@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\game.ts" />
+    <TypeScriptCompile Include="scripts\managers\collision.ts" />
     <TypeScriptCompile Include="scripts\objects\asteroid.ts" />
     <TypeScriptCompile Include="scripts\objects\energy.ts" />
     <TypeScriptCompile Include="scripts\objects\gameObject.ts" />
@@ -106,6 +107,7 @@
     <TypeScriptCompile Include="scripts\typings\soundjs\soundjs.d.ts" />
     <TypeScriptCompile Include="scripts\typings\stats\stats.d.ts" />
     <TypeScriptCompile Include="scripts\typings\tweenjs\tweenjs.d.ts" />
+    <TypeScriptCompile Include="scripts\utility\utility.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
