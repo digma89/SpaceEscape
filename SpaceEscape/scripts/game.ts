@@ -5,6 +5,7 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
 /// <reference path="utility/utility.ts" />
+/// <reference path="managers/assets.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/plane.ts" />
@@ -19,7 +20,6 @@
 var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
-var assets: createjs.LoadQueue;
 
 
 //game variables
@@ -31,23 +31,12 @@ var scoreboard: objects.ScoreBord;
 
 //game managers
 var collision: managers.Collision;
+var assets: managers.Assets;
 
 
-
+//preload function
 function preload() {
-    assets = new createjs.LoadQueue();
-    assets.installPlugin(createjs.Sound);
-    assets.on("complete", init, this);
-    assets.loadManifest([
-        { id: "space", src: "assets/images/background.jpg" },
-        { id: "plane", src: "assets/images/plane.png" },
-        { id: "energy", src: "assets/images/energy.png" },
-        { id: "asteroid", src: "assets/images/asteroid1.png" },
-        { id: "energyS", src: "assets/sounds/energySound.wav" },
-        { id: "explotion", src: "assets/sounds/explotion.wav" },
-        
-        
-    ]);
+    assets = new managers.Assets();
     setupStats();
 }
 
@@ -100,20 +89,20 @@ function main() {
     console.log("Game is Running");
 
     //add background
-    space = new objects.Space(assets.getResult("space"));
+    space = new objects.Space(assets.loader.getResult("space"));
     stage.addChild(space);
 
     //add energy objects to stage
-    energy = new objects.Energy(assets.getResult("energy"));
+    energy = new objects.Energy(assets.loader.getResult("energy"));
     stage.addChild(energy);
 
     //add plane object to the stage
-    plane = new objects.Plane(assets.getResult("plane"));
+    plane = new objects.Plane(assets.loader.getResult("plane"));
     stage.addChild(plane);
 
     //add asteroid object to the stage
     for (var asteroid = 0; asteroid < 3; asteroid++) {
-        asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
+        asteroids[asteroid] = new objects.Asteroid(assets.loader.getResult("asteroid"));
         stage.addChild(asteroids[asteroid]);
     }
 
