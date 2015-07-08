@@ -5,8 +5,9 @@
          //Constructor**************************
         constructor(imageString: string) {
             super(imageString);
-            this.sound = "explotion"
+            this.sound = "explotion";
             this.reset();
+            this.name = "asteroid";
         }  
 
         //private method*********************************************

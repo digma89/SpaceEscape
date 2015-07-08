@@ -100,6 +100,7 @@
     <TypeScriptCompile Include="scripts\objects\energy.ts" />
     <TypeScriptCompile Include="scripts\objects\gameObject.ts" />
     <TypeScriptCompile Include="scripts\objects\plane.ts" />
+    <TypeScriptCompile Include="scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="scripts\objects\space.ts" />
     <TypeScriptCompile Include="scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="scripts\typings\easeljs\easeljs.d.ts" />

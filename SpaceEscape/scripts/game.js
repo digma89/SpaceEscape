@@ -9,6 +9,7 @@
 /// <reference path="objects/plane.ts" />
 /// <reference path="objects/energy.ts" />
 /// <reference path="objects/asteroid.ts" />
+/// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
@@ -17,10 +18,10 @@ var stats;
 var assets;
 //game variables
 var space;
-//var space: createjs.Bitmap;
 var plane;
 var energy;
 var asteroids = [];
+var scoreboard;
 //game managers
 var collision;
 function preload() {
@@ -63,6 +64,8 @@ function gameLoop() {
         asteroids[asteroid].update();
         collision.check(asteroids[asteroid]);
     }
+    //update the scoreboard
+    scoreboard.update();
     //checkCollision(energy);
     collision.check(energy);
     energy.update(); //update the position of the energy
@@ -86,6 +89,8 @@ function main() {
         asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
         stage.addChild(asteroids[asteroid]);
     }
+    //add scoreboard 
+    scoreboard = new objects.ScoreBord();
     //add collision manager
     collision = new managers.Collision();
 }

@@ -16,7 +16,13 @@
 
         if (utility.distance(p1, p2) < ((plane.height * 0.5) + (gameObject.height * 0.3))) {
             if (gameObject.isColliding == false) {
-                createjs.Sound.play(gameObject.sound)
+                createjs.Sound.play(gameObject.sound);
+                if (gameObject.name == "asteroid") {
+                    scoreboard.lives--;
+                }
+                if (gameObject.name == "energy") {
+                    scoreboard.score += 100;
+                }
             }
             gameObject.isColliding = true;
         }else {

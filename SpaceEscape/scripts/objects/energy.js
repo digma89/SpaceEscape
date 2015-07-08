@@ -15,6 +15,7 @@ var objects;
             this.dx = 5;
             this.sound = "energyS";
             this.reset();
+            this.name = "energy";
         }
         //private method
         Energy.prototype.checkBounds = function () {

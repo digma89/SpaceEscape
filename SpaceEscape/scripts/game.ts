@@ -10,6 +10,7 @@
 /// <reference path="objects/plane.ts" />
 /// <reference path="objects/energy.ts" />
 /// <reference path="objects/asteroid.ts" />
+/// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 
 
@@ -23,10 +24,10 @@ var assets: createjs.LoadQueue;
 
 //game variables
 var space: objects.Space;
-//var space: createjs.Bitmap;
 var plane: objects.Plane;
 var energy: objects.Energy;
 var asteroids: objects.Asteroid[] = [];
+var scoreboard: objects.ScoreBord;
 
 //game managers
 var collision: managers.Collision;
@@ -83,6 +84,9 @@ function gameLoop() {
         collision.check(asteroids[asteroid]);
        // checkCollision(asteroids[asteroid]);
     }   
+    //update the scoreboard
+    scoreboard.update();
+
     //checkCollision(energy);
     collision.check(energy);
 
@@ -112,6 +116,9 @@ function main() {
         asteroids[asteroid] = new objects.Asteroid(assets.getResult("asteroid"));
         stage.addChild(asteroids[asteroid]);
     }
+
+    //add scoreboard 
+    scoreboard = new objects.ScoreBord();
 
     //add collision manager
     collision = new managers.Collision();

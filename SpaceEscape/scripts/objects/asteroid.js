@@ -14,6 +14,7 @@ var objects;
             _super.call(this, imageString);
             this.sound = "explotion";
             this.reset();
+            this.name = "asteroid";
         }
         //private method*********************************************
         Asteroid.prototype.checkBounds = function () {

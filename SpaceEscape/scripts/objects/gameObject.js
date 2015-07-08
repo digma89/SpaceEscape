@@ -13,6 +13,7 @@ var objects;
             _super.call(this, imageString);
             this.isColliding = false;
             this.sound = "";
+            this.name = "";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
