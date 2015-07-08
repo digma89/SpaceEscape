@@ -1,37 +1,26 @@
 ﻿module objects {
     //energy class *******************************
-    export class Energy extends createjs.Bitmap {
-        //Public properties **************************
-        width: number;
-        height: number;
-        dx: number = 5;
-        isColliding: boolean = false;
+    export class Energy extends objects.GameObject {
+
         //Constructor**************************
         constructor(imageString: string) {
             super(imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-
-            this.y = Math.floor((Math.random() * 380) + this.height);
-            this.x = 640
-            
-
+            this.dx = 5;
+            this.reset();
+        
         }
+
         //private method
         private checkBounds(): void {
             //check if energy has left the screen then reset
             if (this.x <= 0 - this.width) {
                 this.reset();
             }
-
         }
 
         private reset(): void {
             this.y = Math.floor((Math.random() * 380)+this.height); //start island at random location
             this.x = 1800; //start enegy off stage
-            
         }
 
 
@@ -40,6 +29,6 @@
             this.x -= this.dx; //moves the energy
             this.checkBounds();
         }
-    }
+     }
   }
  

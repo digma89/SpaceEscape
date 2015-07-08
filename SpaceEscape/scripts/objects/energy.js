@@ -13,13 +13,7 @@ var objects;
         function Energy(imageString) {
             _super.call(this, imageString);
             this.dx = 5;
-            this.isColliding = false;
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-            this.y = Math.floor((Math.random() * 380) + this.height);
-            this.x = 640;
+            this.reset();
         }
         //private method
         Energy.prototype.checkBounds = function () {
@@ -38,7 +32,7 @@ var objects;
             this.checkBounds();
         };
         return Energy;
-    })(createjs.Bitmap);
+    })(objects.GameObject);
     objects.Energy = Energy;
 })(objects || (objects = {}));
 //# sourceMappingURL=energy.js.map

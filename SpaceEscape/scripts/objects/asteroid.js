@@ -12,23 +12,16 @@ var objects;
         //Constructor**************************
         function Asteroid(imageString) {
             _super.call(this, imageString);
-            this.dx = 5;
-            this.dy = Math.floor(Math.random() * 4) - 2;
-            this.isColliding = false;
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-            this.y = Math.floor((Math.random() * 480));
-            this.x = 640;
+            this.reset();
         }
-        //private method
+        //private method*********************************************
         Asteroid.prototype.checkBounds = function () {
             //check if energy has left the screen then reset
             if (this.x <= 0 - this.width) {
                 this.reset();
             }
         };
+        //reset function when the asteroids leave stage
         Asteroid.prototype.reset = function () {
             this.y = Math.floor((Math.random() * 480)); //start island at random location
             this.x = 640; //start enegy off stage
@@ -42,7 +35,7 @@ var objects;
             this.checkBounds();
         };
         return Asteroid;
-    })(createjs.Bitmap);
+    })(objects.GameObject);
     objects.Asteroid = Asteroid;
 })(objects || (objects = {}));
 //# sourceMappingURL=asteroid.js.map

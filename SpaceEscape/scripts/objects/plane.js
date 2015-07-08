@@ -12,10 +12,6 @@ var objects;
         //Constructor**************************
         function Plane(imageString) {
             _super.call(this, imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
             this.x = 55;
         }
         //public methods************************************
@@ -23,7 +19,7 @@ var objects;
             this.y = stage.mouseY; //position of the plain over the mouse
         };
         return Plane;
-    })(createjs.Bitmap);
+    })(objects.GameObject);
     objects.Plane = Plane;
 })(objects || (objects = {}));
 //# sourceMappingURL=plane.js.map
