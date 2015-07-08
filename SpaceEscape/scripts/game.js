@@ -12,11 +12,13 @@
 /// <reference path="objects/asteroid.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/play.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
 var stats;
-//var assets: createjs.LoadQueue;
+var game;
+var intro;
 //game variables
 var space;
 var plane;
@@ -26,6 +28,8 @@ var scoreboard;
 //game managers
 var collision;
 var assets;
+//Game states
+var play;
 //preload function
 function preload() {
     assets = new managers.Assets();
@@ -50,41 +54,19 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    space.update();
-    plane.update(); //look for the plane to change position
-    //asteroid.update();
-    for (var asteroid = 0; asteroid < 3; asteroid++) {
-        asteroids[asteroid].update();
-        collision.check(asteroids[asteroid]);
-    }
-    //update the scoreboard
-    scoreboard.update();
-    //checkCollision(energy);
-    collision.check(energy);
-    energy.update(); //update the position of the energy
+    play.update();
     stage.update(); //update/refresh state
     stats.end();
 }
 //our main game function
 function main() {
     console.log("Game is Running");
-    //add background
-    space = new objects.Space(assets.loader.getResult("space"));
-    stage.addChild(space);
-    //add energy objects to stage
-    energy = new objects.Energy(assets.loader.getResult("energy"));
-    stage.addChild(energy);
-    //add plane object to the stage
-    plane = new objects.Plane(assets.loader.getResult("plane"));
-    stage.addChild(plane);
-    //add asteroid object to the stage
-    for (var asteroid = 0; asteroid < 3; asteroid++) {
-        asteroids[asteroid] = new objects.Asteroid(assets.loader.getResult("asteroid"));
-        stage.addChild(asteroids[asteroid]);
-    }
-    //add scoreboard 
-    scoreboard = new objects.ScoreBord();
-    //add collision manager
-    collision = new managers.Collision();
+    //instantiate new game conatainer
+    game = new createjs.Container();
+    //instantiate play state conatainer
+    play = new states.Play();
+    //add to the stages 
+    //stage.addChild(intro);
+    stage.addChild(game);
 }
 //# sourceMappingURL=game.js.map

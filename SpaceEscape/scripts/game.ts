@@ -14,25 +14,30 @@
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 
+/// <reference path="states/play.ts" />
+
 
 
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
+var game: createjs.Container;
+var intro: createjs.Container;
 
+        //game variables
+        var space: objects.Space;
+        var plane: objects.Plane;
+        var energy: objects.Energy;
+        var asteroids: objects.Asteroid[] = [];
+        var scoreboard: objects.ScoreBord;
 
-//game variables
-var space: objects.Space;
-var plane: objects.Plane;
-var energy: objects.Energy;
-var asteroids: objects.Asteroid[] = [];
-var scoreboard: objects.ScoreBord;
+        //game managers
+        var collision: managers.Collision;
+        var assets: managers.Assets;
 
-//game managers
-var collision: managers.Collision;
-var assets: managers.Assets;
-
+//Game states
+var play: states.Play;
 
 //preload function
 function preload() {
@@ -65,52 +70,29 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    space.update();
-    plane.update(); //look for the plane to change position
-    //asteroid.update();
-    for (var asteroid = 0; asteroid < 3; asteroid++) {
-        asteroids[asteroid].update();
-        collision.check(asteroids[asteroid]);
-       // checkCollision(asteroids[asteroid]);
-    }   
-    //update the scoreboard
-    scoreboard.update();
-
-    //checkCollision(energy);
-    collision.check(energy);
-
-    energy.update(); //update the position of the energy
+    play.update();
     stage.update(); //update/refresh state
     stats.end();
+    
 }
+
 
 //our main game function
 function main() {
     console.log("Game is Running");
 
-    //add background
-    space = new objects.Space(assets.loader.getResult("space"));
-    stage.addChild(space);
+    //instantiate new game conatainer
+    game = new createjs.Container();
 
-    //add energy objects to stage
-    energy = new objects.Energy(assets.loader.getResult("energy"));
-    stage.addChild(energy);
+    //instantiate play state conatainer
+    play = new states.Play();
+    
 
-    //add plane object to the stage
-    plane = new objects.Plane(assets.loader.getResult("plane"));
-    stage.addChild(plane);
+    
 
-    //add asteroid object to the stage
-    for (var asteroid = 0; asteroid < 3; asteroid++) {
-        asteroids[asteroid] = new objects.Asteroid(assets.loader.getResult("asteroid"));
-        stage.addChild(asteroids[asteroid]);
-    }
-
-    //add scoreboard 
-    scoreboard = new objects.ScoreBord();
-
-    //add collision manager
-    collision = new managers.Collision();
-
+    //add to the stages 
+    //stage.addChild(intro);
+    stage.addChild(game);
+    
     }
 
