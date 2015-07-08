@@ -57,43 +57,26 @@ function gameLoop() {
     //asteroid.update();
     for (var asteroid = 0; asteroid < 3; asteroid++) {
         asteroids[asteroid].update();
-        planeAsteroid(asteroids[asteroid]);
+        checkCollision(asteroids[asteroid]);
     }
-    planeEnergy();
+    checkCollision(energy);
     energy.update(); //update the position of the energy
     stage.update(); //update/refresh state
     stats.end();
 }
-/*function blueButtonClickEvent(event: createjs.MouseEvent) {
-    createjs.Sound.play("clicked");
-}
-*/
 //distance utillity function 
 function distance(p1, p2) {
     return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
 }
-//check distance between plane and energy
-function planeEnergy() {
+function checkCollision(gameObject) {
     var p1 = new createjs.Point();
     var p2 = new createjs.Point();
     p1.x = plane.x;
     p1.y = plane.y;
-    p2.x = energy.x;
-    p2.y = energy.y;
-    if (distance(p1, p2) < ((plane.height * 0.5) + (energy.height * 0.5))) {
-        createjs.Sound.play("energyS");
-    }
-}
-function planeAsteroid(asteroid) {
-    var p1 = new createjs.Point();
-    var p2 = new createjs.Point();
-    p1.x = plane.x;
-    p1.y = plane.y;
-    p2.x = asteroid.x;
-    p2.y = asteroid.y;
-    if (distance(p1, p2) < ((plane.height * 0.5) + (asteroid.height * 0.3))) {
-        console.log("Colision");
-        createjs.Sound.play("explotion");
+    p2.x = gameObject.x;
+    p2.y = gameObject.y;
+    if (distance(p1, p2) < ((plane.height * 0.5) + (gameObject.height * 0.3))) {
+        createjs.Sound.play(gameObject.sound);
     }
 }
 //our main game function

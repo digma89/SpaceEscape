@@ -12,6 +12,7 @@ var objects;
         //Constructor**************************
         function Asteroid(imageString) {
             _super.call(this, imageString);
+            this.sound = "explotion";
             this.reset();
         }
         //private method*********************************************

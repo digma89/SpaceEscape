@@ -13,6 +13,7 @@ var objects;
         function Energy(imageString) {
             _super.call(this, imageString);
             this.dx = 5;
+            this.sound = "energyS";
             this.reset();
         }
         //private method

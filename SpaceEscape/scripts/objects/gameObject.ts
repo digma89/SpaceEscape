@@ -5,7 +5,7 @@
         public width: number;
         public height: number;
         public isColliding: boolean = false;
-        public soundString: string = "";
+        public sound: string = "";
 
         //Protected properties **************************
         protected dx: number;

@@ -12,7 +12,7 @@ var objects;
         function GameObject(imageString) {
             _super.call(this, imageString);
             this.isColliding = false;
-            this.soundString = "";
+            this.sound = "";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
