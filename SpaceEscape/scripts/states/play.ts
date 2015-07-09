@@ -1,9 +1,5 @@
 ﻿module states{
     export class Play{
-        
-
-    
-
         //Constructor*******************************
         constructor() {
             this.main();
@@ -55,9 +51,7 @@
             scoreboard = new objects.ScoreBord();
 
             //add collision manager
-            collision = new managers.Collision();
-
-            //stage.addChild(game);
+            collision = new managers.Collision();            
         }
     }
 } 

@@ -2,7 +2,6 @@
     export class Collision {
         //Constructor************************************
         constructor() {
-
         }
         
         //public method to check the distance between objects 
@@ -22,8 +21,8 @@
                 //if is the asteroid 
                 if (gameObject.name == "asteroid") {
                     if (scoreboard.lives < 2) {  
-                        gameOver = 2;
-                        
+                        //To know that the game is over
+                        gameOver = 2;                        
                     } else {
                         scoreboard.lives--;
                     }

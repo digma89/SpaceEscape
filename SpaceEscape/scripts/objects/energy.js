@@ -24,8 +24,9 @@ var objects;
                 this.reset();
             }
         };
+        //to reset the energy when is off of stage
         Energy.prototype.reset = function () {
-            this.y = Math.floor((Math.random() * 380) + this.height); //start island at random location
+            this.y = Math.floor((Math.random() * 380) + this.height); //start energy at random location
             this.x = 1800; //start enegy off stage
         };
         //public methods************************************

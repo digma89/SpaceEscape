@@ -1,5 +1,4 @@
 ﻿module objects {
-    
     export class GameObject extends createjs.Bitmap {
         //Public properties **************************
         public width: number;
@@ -11,8 +10,7 @@
         //Protected properties **************************
         protected dx: number;
         protected dy: number;
-
-
+        
         //Constructor**************************
         constructor(imageString: string) {
             super(imageString);

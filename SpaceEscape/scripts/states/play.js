@@ -42,7 +42,6 @@ var states;
             scoreboard = new objects.ScoreBord();
             //add collision manager
             collision = new managers.Collision();
-            //stage.addChild(game);
         };
         return Play;
     })();

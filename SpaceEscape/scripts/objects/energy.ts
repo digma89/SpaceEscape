@@ -8,8 +8,7 @@
             this.dx = 5;
             this.sound = "energyS";
             this.reset();
-            this.name = "energy";
-        
+            this.name = "energy";        
         }
 
         //private method
@@ -20,8 +19,9 @@
             }
         }
 
+        //to reset the energy when is off of stage
         private reset(): void {
-            this.y = Math.floor((Math.random() * 380)+this.height); //start island at random location
+            this.y = Math.floor((Math.random() * 380)+this.height); //start energy at random location
             this.x = 1800; //start enegy off stage
         }
 

@@ -19,6 +19,7 @@ var managers;
                     //if is the asteroid 
                     if (gameObject.name == "asteroid") {
                         if (scoreboard.lives < 2) {
+                            //To know that the game is over
                             gameOver = 2;
                         }
                         else {

@@ -93,36 +93,30 @@ function gameLoop() {
     }      
         stage.update(); //update/refresh state    
     stats.end();
-    
-
 }
 
-
-//our main game function
+//function of the intro screen
 function intr() {
     createjs.Sound.play("music", { "loop": -1,"volume": .1 });
     intro = new states.Intro();
     stage.addChild(start);
-
-
 }
 
+//function that starts the playing the game
 function main() {
-
     //instantiate play state conatainer
     play = new states.Play();
     
     //add to the stages 
     stage.addChild(game);
-
-    createjs.Sound.play("planeS", {"loop": -1});
-
 }
 
+//function of the game over stage 
 function overFun() {
     if (gameOver) {
         createjs.Sound.stop();
         createjs.Sound.play("gameOverS");
+        createjs.Sound.play("music", { "loop": -1, "volume": .1 });
         gameOver = 3;
         stage.removeChild(game);
         game.removeAllChildren();

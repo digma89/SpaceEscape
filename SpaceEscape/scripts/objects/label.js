@@ -6,6 +6,7 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
+    //class for the labels
     var Label = (function (_super) {
         __extends(Label, _super);
         //Contrsuctor***************************  

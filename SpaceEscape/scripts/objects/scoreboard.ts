@@ -15,6 +15,7 @@
             game.addChild(this.livesLabel);
             game.addChild(this.scoreLabel);
         }
+
         //update the score bord
         public update() {
             this.livesLabel.text = "Lives: " + this.lives;

@@ -5,6 +5,7 @@ var managers;
         function Assets() {
             this.preload();
         }
+        //all the objects that are load at the beginig of the game (Manifest)
         Assets.prototype.preload = function () {
             this.loader = new createjs.LoadQueue();
             this.loader.installPlugin(createjs.Sound);
