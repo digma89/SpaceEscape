@@ -14,6 +14,7 @@
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 
+/// <reference path="states/intro.ts" />
 /// <reference path="states/play.ts" />
 /// <reference path="states/over.ts" />
 
@@ -23,9 +24,17 @@
 var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
+
+
+//Game stages (containers)
 var game: createjs.Container;
-var gOver: createjs.Container;
-var labelText: objects.Label;
+var gOver: createjs.Container; 
+var start: createjs.Container;
+
+//Game states (Classes)
+var play: states.Play;
+var over: states.Over;
+var intro: states.Intro;
 
 //game variables
 var space: objects.Space;
@@ -36,14 +45,15 @@ var scoreboard: objects.ScoreBord;
 var gameOver: number = 0;
 var btnPlayAgain: objects.Button;
 var labelScore: objects.Label;
+var labelText: objects.Label;
+var labelTitle: objects.Label;
+var labelInstru: objects.Label;
+var btnPlay: objects.Button;
+
 
 //game managers
 var collision: managers.Collision;
 var assets: managers.Assets;
-
-//Game states
-var play: states.Play;
-var over: states.Over;
 
 //preload function
 function preload() {
@@ -51,15 +61,16 @@ function preload() {
     setupStats();
 }
 
-
+//Everything starts here
 function init() {
     stage = new createjs.Stage(canvas);
     stage.enableMouseOver(20); //make the mouse known
     createjs.Ticker.setFPS(60); //framerate for the game 
     createjs.Ticker.on("tick", gameLoop); //same like useEventListener, every tick access the gameLoop function
-    main();
+    intr();
 }
 
+//to show the stats of the FPS
 function setupStats() {
     stats = new Stats();
     stats.setMode(0);
@@ -70,15 +81,14 @@ function setupStats() {
     stats.domElement.style.top = '0px';
 
     document.body.appendChild(stats.domElement);
-
 }
 
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    if (gameOver == 0) {        
+    if (gameOver == 1) {        
         play.update();
-    } else if (gameOver == 1){
+    } else if (gameOver == 2){
         overFun()
     }      
         stage.update(); //update/refresh state    
@@ -89,8 +99,15 @@ function gameLoop() {
 
 
 //our main game function
+function intr() {
+    createjs.Sound.play("music", { "loop": -1,"volume": .1 });
+    intro = new states.Intro();
+    stage.addChild(start);
+
+
+}
+
 function main() {
-    console.log("Game is Running");
 
     //instantiate play state conatainer
     play = new states.Play();
@@ -98,11 +115,15 @@ function main() {
     //add to the stages 
     stage.addChild(game);
 
+    createjs.Sound.play("planeS", {"loop": -1});
+
 }
 
 function overFun() {
     if (gameOver) {
-        gameOver = 2;
+        createjs.Sound.stop();
+        createjs.Sound.play("gameOverS");
+        gameOver = 3;
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();

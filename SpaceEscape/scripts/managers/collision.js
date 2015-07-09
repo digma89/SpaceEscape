@@ -19,7 +19,7 @@ var managers;
                     //if is the asteroid 
                     if (gameObject.name == "asteroid") {
                         if (scoreboard.lives < 2) {
-                            gameOver = 1;
+                            gameOver = 2;
                         }
                         else {
                             scoreboard.lives--;

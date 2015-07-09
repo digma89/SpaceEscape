@@ -28,6 +28,7 @@
 
         //our main game function
         main() {
+            console.log("Game is Running");
 
             //instantiate new game conatainer
             game = new createjs.Container();

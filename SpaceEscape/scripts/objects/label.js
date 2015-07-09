@@ -10,7 +10,7 @@ var objects;
         __extends(Label, _super);
         //Contrsuctor***************************  
         function Label(text, size) {
-            _super.call(this, text, size + " Consolas", "#FFFF00");
+            _super.call(this, text, size + " Consolas", "#28E90F");
         }
         return Label;
     })(createjs.Text);

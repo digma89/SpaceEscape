@@ -12,15 +12,21 @@
 /// <reference path="objects/asteroid.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/intro.ts" />
 /// <reference path="states/play.ts" />
 /// <reference path="states/over.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
 var stats;
+//Game stages (containers)
 var game;
 var gOver;
-var labelText;
+var start;
+//Game states (Classes)
+var play;
+var over;
+var intro;
 //game variables
 var space;
 var plane;
@@ -30,24 +36,27 @@ var scoreboard;
 var gameOver = 0;
 var btnPlayAgain;
 var labelScore;
+var labelText;
+var labelTitle;
+var labelInstru;
+var btnPlay;
 //game managers
 var collision;
 var assets;
-//Game states
-var play;
-var over;
 //preload function
 function preload() {
     assets = new managers.Assets();
     setupStats();
 }
+//Everything starts here
 function init() {
     stage = new createjs.Stage(canvas);
     stage.enableMouseOver(20); //make the mouse known
     createjs.Ticker.setFPS(60); //framerate for the game 
     createjs.Ticker.on("tick", gameLoop); //same like useEventListener, every tick access the gameLoop function
-    main();
+    intr();
 }
+//to show the stats of the FPS
 function setupStats() {
     stats = new Stats();
     stats.setMode(0);
@@ -60,26 +69,33 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    if (gameOver == 0) {
+    if (gameOver == 1) {
         play.update();
     }
-    else if (gameOver == 1) {
+    else if (gameOver == 2) {
         overFun();
     }
     stage.update(); //update/refresh state    
     stats.end();
 }
 //our main game function
+function intr() {
+    createjs.Sound.play("music", { "loop": -1, "volume": .1 });
+    intro = new states.Intro();
+    stage.addChild(start);
+}
 function main() {
-    console.log("Game is Running");
     //instantiate play state conatainer
     play = new states.Play();
     //add to the stages 
     stage.addChild(game);
+    createjs.Sound.play("planeS", { "loop": -1 });
 }
 function overFun() {
     if (gameOver) {
-        gameOver = 2;
+        createjs.Sound.stop();
+        createjs.Sound.play("gameOverS");
+        gameOver = 3;
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();

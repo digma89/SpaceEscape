@@ -21,6 +21,9 @@
                 { id: "asteroid", src: "assets/images/asteroid1.png" },
                 { id: "energyS", src: "assets/sounds/energySound.wav" },
                 { id: "explotion", src: "assets/sounds/explotion.wav" },
+                { id: "planeS", src: "assets/sounds/plane.wav" },
+                { id: "gameOverS", src: "assets/sounds/gameOver.wav" },
+                { id: "music", src: "assets/sounds/music.mp3" },
             ]);
         }
     }

@@ -9,11 +9,6 @@ module states {
             this.main();            
         }
 
-     /*   //update method
-        public update() {
-            space.update();
-         }
-        */
         //our main game function
         main() {
             console.log("Game is Over");
@@ -40,11 +35,13 @@ module states {
 
 
         }
+        //try again function
         private tryAgainClicked() {
+            createjs.Sound.play("music", { "loop": -1, "volume": .1 });
             stage.removeChild(gOver);
-            game.removeAllChildren();
-            game.removeAllEventListeners();
-            gameOver = 0;
+            gOver.removeAllChildren();
+            gOver.removeAllEventListeners();
+            gameOver = 1;
             main();
         }
         

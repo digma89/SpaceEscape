@@ -3,7 +3,7 @@
         
          //Contrsuctor***************************  
         constructor(text: string, size: string) {
-            super(text, size +" Consolas", "#FFFF00");            
+            super(text, size + " Consolas", "#28E90F");            
         }
     }
 } 

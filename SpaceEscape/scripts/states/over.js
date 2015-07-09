@@ -8,11 +8,6 @@ var states;
         function Over() {
             this.main();
         }
-        /*   //update method
-           public update() {
-               space.update();
-            }
-           */
         //our main game function
         Over.prototype.main = function () {
             console.log("Game is Over");
@@ -33,10 +28,11 @@ var states;
             btnPlayAgain.addEventListener("click", this.tryAgainClicked);
         };
         Over.prototype.tryAgainClicked = function () {
+            createjs.Sound.play("music", { "loop": -1, "volume": .1 });
             stage.removeChild(gOver);
-            game.removeAllChildren();
-            game.removeAllEventListeners();
-            gameOver = 0;
+            gOver.removeAllChildren();
+            gOver.removeAllEventListeners();
+            gameOver = 1;
             main();
         };
         return Over;

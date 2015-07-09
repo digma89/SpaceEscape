@@ -21,6 +21,7 @@ var states;
         };
         //our main game function
         Play.prototype.main = function () {
+            console.log("Game is Running");
             //instantiate new game conatainer
             game = new createjs.Container();
             //add background
