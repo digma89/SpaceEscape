@@ -16,6 +16,8 @@
                 { id: "space", src: "assets/images/background.jpg" },
                 { id: "plane", src: "assets/images/plane.png" },
                 { id: "energy", src: "assets/images/energy.png" },
+                { id: "play", src: "assets/images/play.png" },
+                { id: "playAgain", src: "assets/images/playAgain.png" },
                 { id: "asteroid", src: "assets/images/asteroid1.png" },
                 { id: "energyS", src: "assets/sounds/energySound.wav" },
                 { id: "explotion", src: "assets/sounds/explotion.wav" },

@@ -15,6 +15,7 @@
 /// <reference path="managers/collision.ts" />
 
 /// <reference path="states/play.ts" />
+/// <reference path="states/over.ts" />
 
 
 
@@ -23,21 +24,26 @@ var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
 var game: createjs.Container;
-var intro: createjs.Container;
+var gOver: createjs.Container;
+var labelText: objects.Label;
 
-        //game variables
-        var space: objects.Space;
-        var plane: objects.Plane;
-        var energy: objects.Energy;
-        var asteroids: objects.Asteroid[] = [];
-        var scoreboard: objects.ScoreBord;
+//game variables
+var space: objects.Space;
+var plane: objects.Plane;
+var energy: objects.Energy;
+var asteroids: objects.Asteroid[] = [];
+var scoreboard: objects.ScoreBord;
+var gameOver: number = 0;
+var btnPlayAgain: objects.Button;
+var labelScore: objects.Label;
 
-        //game managers
-        var collision: managers.Collision;
-        var assets: managers.Assets;
+//game managers
+var collision: managers.Collision;
+var assets: managers.Assets;
 
 //Game states
 var play: states.Play;
+var over: states.Over;
 
 //preload function
 function preload() {
@@ -70,10 +76,15 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    play.update();
-    stage.update(); //update/refresh state
+    if (gameOver == 0) {        
+        play.update();
+    } else if (gameOver == 1){
+        overFun()
+    }      
+        stage.update(); //update/refresh state    
     stats.end();
     
+
 }
 
 
@@ -81,18 +92,21 @@ function gameLoop() {
 function main() {
     console.log("Game is Running");
 
-    //instantiate new game conatainer
-    game = new createjs.Container();
-
     //instantiate play state conatainer
     play = new states.Play();
     
-
-    
-
     //add to the stages 
-    //stage.addChild(intro);
     stage.addChild(game);
-    
-    }
 
+}
+
+function overFun() {
+    if (gameOver) {
+        gameOver = 2;
+        stage.removeChild(game);
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        over = new states.Over();
+        stage.addChild(gOver);
+    }
+}

@@ -28,7 +28,6 @@
 
         //our main game function
         main() {
-            console.log("Game is Running");
 
             //instantiate new game conatainer
             game = new createjs.Container();
@@ -57,9 +56,7 @@
             //add collision manager
             collision = new managers.Collision();
 
-            //add game container to the stage 
-            stage.addChild(game);
-
+            //stage.addChild(game);
         }
     }
 } 

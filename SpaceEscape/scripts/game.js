@@ -13,23 +13,29 @@
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 /// <reference path="states/play.ts" />
+/// <reference path="states/over.ts" />
 //game framework variables 
 var canvas = document.getElementById("canvas");
 var stage;
 var stats;
 var game;
-var intro;
+var gOver;
+var labelText;
 //game variables
 var space;
 var plane;
 var energy;
 var asteroids = [];
 var scoreboard;
+var gameOver = 0;
+var btnPlayAgain;
+var labelScore;
 //game managers
 var collision;
 var assets;
 //Game states
 var play;
+var over;
 //preload function
 function preload() {
     assets = new managers.Assets();
@@ -54,19 +60,31 @@ function setupStats() {
 //Our main Game loop access 60 fps / runs on the back 
 function gameLoop() {
     stats.begin();
-    play.update();
-    stage.update(); //update/refresh state
+    if (gameOver == 0) {
+        play.update();
+    }
+    else if (gameOver == 1) {
+        overFun();
+    }
+    stage.update(); //update/refresh state    
     stats.end();
 }
 //our main game function
 function main() {
     console.log("Game is Running");
-    //instantiate new game conatainer
-    game = new createjs.Container();
     //instantiate play state conatainer
     play = new states.Play();
     //add to the stages 
-    //stage.addChild(intro);
     stage.addChild(game);
+}
+function overFun() {
+    if (gameOver) {
+        gameOver = 2;
+        stage.removeChild(game);
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        over = new states.Over();
+        stage.addChild(gOver);
+    }
 }
 //# sourceMappingURL=game.js.map

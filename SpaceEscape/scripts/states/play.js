@@ -21,7 +21,6 @@ var states;
         };
         //our main game function
         Play.prototype.main = function () {
-            console.log("Game is Running");
             //instantiate new game conatainer
             game = new createjs.Container();
             //add background
@@ -42,8 +41,7 @@ var states;
             scoreboard = new objects.ScoreBord();
             //add collision manager
             collision = new managers.Collision();
-            //add game container to the stage 
-            stage.addChild(game);
+            //stage.addChild(game);
         };
         return Play;
     })();
